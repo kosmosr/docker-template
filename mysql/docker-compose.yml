@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # https://hub.docker.com/_/mysql
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+#      - init.sql:/docker-entrypoint-initdb.d  #excute init.sql when container is started at the first time
+    environment:
+      # root password
+      MYSQL_ROOT_PASSWORD: mysql_password_+-
+      # non-root
+#      MYSQL_USER: custom_user
+#      MYSQL_PASSWORD: custom_usr_password
+      TZ: Asia/Shanghai
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+volumes:
+  mysql-data:
